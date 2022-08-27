@@ -12,7 +12,6 @@ This project was an exam for the module "assistance systems" as part of my studi
 
 Install Rasa Open Source using pip requires Python 3.7 or 3.8 (I used Python 3.8.5 for this project). Installation instructions can be found on this website: https://rasa.com/docs/rasa/installation/
 
-or 
 
 ```sh
 
