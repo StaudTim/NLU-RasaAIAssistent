@@ -13,12 +13,29 @@ This project was an exam for the module "assistance systems" as part of my studi
 Install Rasa Open Source using pip requires Python 3.7 or 3.8 (I used Python 3.8.5 for this project). Installation instructions can be found on this website: https://rasa.com/docs/rasa/installation/
 
 
+## Usage
+
+#### Start Rasa server
+
+Open your terminal and start your virtual environment. Navigate to the 'src' folder and enter the following command:
+
+
 ```sh
 
-$ pip install -r requirements.txt
+$ rasa run
 
 ```
 
+#### Start AI Assistent
 
-## Usage
+Open a new terminal in which you also start the virtual environment. Navigate to the 'src' folder and enter the following command:
+
+
+```sh
+
+$ rasa shell
+
+```
+
+This loads your trained model and lets you talk to your assistant on the command line.
 
