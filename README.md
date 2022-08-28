@@ -1,6 +1,10 @@
 # Natural language understanding - AI Assistent using Rasa framework
 
-This project was an exam for the module "assistance systems" as part of my studies in artificial intelligence. We had to use the rasa framework to create a chatbot that was supposed to simplify everyday life at the university in some way.
+This project was an exam for the module "assistance systems" as part of my studies in artificial intelligence. We had to use the rasa framework to create a chatbot that was supposed to simplify everyday life at the university in some way. This chatbot can give you information about your timetable. He can answer questions such as: 
+
+- which lecture is next
+- when a lecture starts
+- where a lecture is taking place
 
 ## Table of Contents
 
