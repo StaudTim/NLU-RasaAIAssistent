@@ -1,92 +1,434 @@
 version: "2.0"
-
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
+    - hallo
     - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - hey
+    - grüß gott
+    - guten tag
+    - guten abend
+    - Hallo
+    - hey wie gehts
 
 - intent: goodbye
   examples: |
-    - good afternoon
-    - cu
-    - good by
-    - cee you later
-    - good night
     - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
-
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - ciao
+    - tschau
+    - tschüss
+    - auf wiedersehen
 
 - intent: bot_challenge
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - bist du ein bot?
+    - bist du ein mensch?
+    - rede ich mit einem bot?
+    - rede ich mit einem menschen?
+    - bist du ein mensch
+    - bist du ein bot
+
+- intent: location_of_lecture
+  examples: |
+    - wo
+    - wo muss ich hin?
+    - in welchem raum muss ich?
+    - in welchem gebäude ist die vorlesung?
+    - in welches gebäude muss ich?
+    - kannst du mir den ort sagen?
+    - kannst du mir den raum sagen?
+    - wo ist die vorlesung?
+    - wo findet die vorlesung statt?
+    - wo findet sie statt?
+    - in welchem raum findet sie statt?
+    - in welchem raum ist die vorlesung [assistenzsysteme](lecture)?
+    - wo findet [stochastik](lecture) statt?
+    - in welchem raum findet [wissenschaftliches arbeiten](lecture) statt?
+    - in welchem gebäude findet die vorlesung [projektmanaement](lecture) statt?
+    - wo muss ich hin für das modul [datenbanken](lecture)?
+    - wo haben wir [stochastik](lecture)?
+    - kannst du mir den raum sagen in dem [assistenzsysteme](lecture) statt findet?
+    - wo ist die vorlesung [grundlagen informatik](lecture)?
+    - in welches gebäude muss ich für [ki-programmierung](lecture)?
+    - wo hab ich [technikethik und nachhaltigkeit](lecture)?
+    - Wo ist meine Vorlesung?
+    - Wo findet [Stochastik](lecture) statt?
+    - wo findet [Assistenzsystem](lecture) statt
+    - in welchen raum
+    - wo findet [assistenzsysteme](lecture) statt? ich studiere [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - wo muss ich hin
+    - wo findet [stochastik](lecture) statt
+    - wo hab ich am [Montag](date) meine vorlesung
+    - wo muss ich [morgen](date) hin
+    - und wo
+    - wo hab ich [assistenzsysteme](lecture)
+    - wo findet [Betriebswirtschaft](lecture) statt
+    - wo ist [Mathematik 1](lecture)
+    - wo hab ich [datenbanken](lecture)
+    - wo hab ich am [montag](date) meine erste vorlesung
+    - wo muss ich am [montag](date) hin für die erste vorlesung
+    - wo findet meine erste vorlesung am [Mittwoch](date) statt
+    - wo muss ich hin am [montag](date)
+    - wo muss ich hin am [dienstag](date)
+    - hey kannst du mir sagen in welchen raum die vorlesung am [Freitag](date) ist
+    - wo den
+    - wo ist die vorlesung um [10:00](time) Uhr
+    - wo muss ich am [dienstag](date) hin
+    - wo muss ich am [montag](date) hin
+    - wo muss ich hin am [freitag](date)
+    - wo hab ich am [18.10.20](date) meine erste vorlesung
+    - wo muss ich am [01.11](date) hin
+    - wo hab ich die vorlesung welche um [15:45](time) anfängt
+    - In welchen Raum befindet sich die Vorlesung [Assistenzsysteme](lecture)?
+    - In welchen Raum befindet sich die Vorlesung [Assistenzsysteme](lecture) am [14.10](date)
+
+- intent: location_of_lecture_with_information
+  examples: |
+    - wo muss ich hin? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - in welchem raum muss ich? ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - in welches gebäude muss ich? ich studiere [wi](degree_course) im [4](semester). semster
+    - kannst du mir den raum sagen für [ki](degree_course) im [zweitem](semester)?
+    - wo ist die vorlesung? [ki](degree_course) im [siebten](semester)
+    - in welchem raum ist die vorlesung [assistenzsysteme](lecture) für [cy](degree_course) im [erstem](semester)?
+    - wo findet [stochastik](lecture) statt? ich studiere [künstliche intelligenz](degree_course) und bin im [5](semester). semster
+    - in welchem raum findet [wissenschaftliches arbeiten](lecture) für [ki](degree_course) im [zweitem](semester) statt?
+    - in welchem gebäude findet die vorlesung [projektmanaement](lecture) statt? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - wo muss ich hin für das modul [datenbanken](lecture)? [ki](degree_course) im [siebten](semester)
+    - wo haben wir [stochastik](lecture)? ich bin im [3](semester). semester [künstliche intelligenz](degree_course)
+    - kannst du mir den raum sagen in dem [assistenzsysteme](lecture) statt findet? [3](semester). semester [künstliche intelligenz](degree_course)
+    - wo ist die vorlesung [grundlagen informatik](lecture)? ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - in welches gebäude muss ich für [ki-programmierung](lecture)? [drittes](semester) semester [cyber security](degree_course)
+    - wo hab ich [technikethik und nachhaltigkeit](lecture)? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - wo ist [wissenschaftliches arbeiten](lecture). [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} [drittes](semester) semester
+    - wo habe ich [stochastik](lecture)? ich bin [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} student
+    - wo muss ich hin für [stochastik](lecture)? bin im [dritten](semester) semester
+    - in welchen raum muss ich für [assistenzsysteme](lecture)? bin im [dritten](semester) semester
+    - wo muss ich am [montag](date) hin für die erste vorlesung wenn ich im [dritten](semester) semester von [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} bin
+    - ich studiere [Betriebswirtschaft](degree_course) im [ersten](semester) semester. wo muss ich am [dienstag](date) hin
+    - wo hab ich am [Donnerstag](date) meine vorlesung? ich studiere [Künstliche Intelligenz](degree_course) im [ersten](semester) semester
+    - wo hab ich am Freitag meine vorlesung. ich studier [elektro- und informationstechnik](degree_course) im [dritten](semester)
+    - wo hab ich am Freitag meine vorlesung. ich studier [cy]{"entity": "degree_course", "value": "Cyber Security"} im [dritten](semester)
+    - ich studier [cy]{"entity": "degree_course", "value": "Cyber Security"} im [vierten](semester) semester. wo muss ich hin
+    - wo haben die [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} Studenten am [montag](date) ihre erste vorlesung
+
+- intent: time_of_lecture
+  examples: |
+    - wann?
+    - wann startet sie?
+    - wann geht's los?
+    - wann beginnt sie?
+    - wann startet die vorlesung?
+    - wann geht die vorlesung los?
+    - wann beginnt die vorlesung?
+    - um wie viel uhr?
+    - um wie viel uhr startet die vorlesung?
+    - wann startet meine nächste vorlesung?
+    - kannst du mir sagen wann es los geht?
+    - um wie viel uhr beginnt die vorlesung?
+    - wann muss ich an der hochschule sein für die vorlesung?
+    - wann startet [stochastik](lecture)?
+    - wann beginnt [assistenzsysteme](lecture)?
+    - wann geht [datenbanken](lecture) los?
+    - wann startet die vorlesung [stochastik](lecture)?
+    - wann beginnt die vorlesung [assistenzsysteme](lecture)?
+    - wann geht die vorlesung [datenbanken](lecture) los?
+    - um wie viel uhr startet [projektmanagement](lecture)?
+    - zu welcher uhrzeit beginnt [wissenschaftliches arbeiten](lecture)?
+    - kannst du mir sagen wann [technikethik und nachhaltigkeit](lecture) beginnt?
+    - um wie viel uhr beginnt die vorlesung [mathematik 2](lecture)?
+    - wann muss ich für die vorlesung [assistenzsysteme](lecture) am campus sein?
+    - Wann ist die Vorlesung?
+    - Wann ist [Stochastik](lecture)?
+    - wann startet meine vorlesung
+    - wann startet [assistenzsysteme](lecture)
+    - wann hab ich [assistenzsysteme](lecture)
+    - wann hab ich [stochastik](lecture)
+    - wann habe ich [stochastik](lecture)
+    - wann hab ich vorlesungen
+    - wann hab ich am [Montag](date) meine erste vorlesung
+    - wann hab ich eine vorlesung. ich studier [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - wann beginnt [datenbanken](lecture)
+    - wann hab ich am [Mittwoch](date) meine erste vorlesung?
+    - wann ist [ki-programmierung](lecture)
+    - Wann startet [Datenbanken](lecture)
+    - wann startet [KI-Programmierung](lecture)?
+    - sag mir bitte wann meine [nächste](date) vorlesung ist
+    - wann startet [datenbanken](lecture)
+    - wann hab ich die erste vorlesung
+    - wann geht es los
+    - wann hab ich [Datenbanken](lecture)
+    - wann startet die vorlesung
+    - wann startet [Programmierung 1](lecture)
+    - wann beginnt sie
+    - wann hab ich meiner erste vorlesung am [montag](date)
+    - wann ist meines vorlesung am [freitag](date)
+    - wann startet [stochastik](lecture)
+    - wann hab ich am [Donnerstag](date) die erste vorlesung
+    - wann hab ich am [15.10.2020](date) meine erste vorlesung
+    - Wann beginnt [Technikethik und Nachhaltigkeit](lecture)?
+
+- intent: time_of_lecture_with_information
+  examples: |
+    - wann startet meine vorlesung? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - wann geht die vorlesung los? ich studiere [ki](degree_course) im [fünften](semester) semster
+    - wann beginnt die vorlesung? ich studiere [wi](degree_course) im [4](semester). semster
+    - um wie viel uhr startet die vorlesung? ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - wann startet meine vorlesung? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semester
+    - kannst du mir sagen wann es los geht? ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - um wie viel uhr beginnt meine vorlesung? [ki](degree_course) im [siebten](semester)
+    - wann muss ich an der hochschule sein für meine vorlesung? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - wann startet [stochastik](lecture)? [wi](degree_course) im [5](semester).
+    - wann beginnt [assistenzsysteme](lecture)? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - wann geht [datenbanken](lecture) los? ich bin im [dritten](semester) semester und studiere [wirtschaftsinformatik](degree_course)
+    - wann startet die vorlesung [stochastik](lecture)? ich bin im [2](semester). semester und studiere [wi](degree_course)
+    - wann beginnt die vorlesung [assistenzsysteme](lecture) für [künstliche intelligenz](degree_course) [drittes](semester) semster?
+    - wann geht die vorlesung [datenbanken](lecture) los? [wi](degree_course) im [5](semester).
+    - zu welcher uhrzeit beginnt [wissenschaftliches arbeiten](lecture)? ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - kannst du mir sagen wann [technikethik und nachhaltigkeit](lecture) beginnt? [künstliche intelligenz](degree_course) im [3](semester).
+    - um wie viel uhr beginnt die vorlesung [mathematik 1](lecture) für [erstes](semester) semester [künstliche intelligenz](degree_course)?
+    - wann muss ich für die vorlesung [assistenzsysteme](lecture) am campus sein? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - Wann ist meine Vorlesung? Ich studiere [Künstliche Intelligenz](degree_course)
+    - wann ist [stochastik](lecture)? ich bin im [dritten](semester) semster
+    - wann starte [wissenschaftliches arbeiten](lecture). ich bin im [dritten](semester) semester [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - wann starte [Stochastik](lecture). ich bin im [dritten](semester) semester [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - wann starte [KI-Programmierung](lecture). ich bin im [dritten](semester) semester [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - wann startet [Datenbanken](lecture). ich studiere im [dritten](semester) semester [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - wann hab ich am [Montag](date) meine vorlesung? ich bin [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} student im [dritten](semester) semester
+    - wann hab ich meine vorlesung? ich bin [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} Student im [dritten](semester) semester
+    - wann startet am [montag](date) die vorlesung für [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} [drittes](semester) semester
+    - wann muss ich am [13.12](date) an der uni sein. ich studier [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+    - wann muss ich am [13.12.21](date) an der uni sein. ich studier [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+    - wann muss ich am [13.12.2021](date) an der uni sein. ich studier [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+
+- intent: ask_for_classes
+  examples: |
+    - was
+    - was hab ich [heute](date)
+    - welche vorlesungen
+    - was für vorlesungen hab ich am [montag](date)
+    - was habe ich [heute](date) für vorlesungen?
+    - welche vorlesung habe ich [heute](date)?
+    - was ist meine [nächste](date) vorlesung?
+    - wie lauten meine vorlesungen für [heute](date)?
+    - kannst du mir sagen welche vorlesungen ich [heute](date) habe?
+    - was habe ich am [dienstag](date) für vorlesungen?
+    - welche vorlesungen habe ich am [22.10.2021](date)?
+    - was für vorlesungen habe ich am [22. oktober](date)?
+    - sag mir meine [nächste](date) vorlesung
+    - [nächste](date) vorlesung
+    - vorlesungen am [mittwoch](date)
+    - vorlesungen am [11. Dezember](date)
+    - welche fächer habe ich [heute](date)?
+    - welche module habe ich [morgen](date)?
+    - [heutige](date) vorlesungen
+    - vorlesung [morgen](date)
+    - vorlesungen [heute](date)
+    - wie heißt die vorlesung?
+    - was ist das für eine vorlesung?
+    - was für eine vorlesung ist das?
+    - Was hab ich [heute](date) für Vorlesungen?
+    - Hab ich am [Montag](date) eine Vorlesung?
+    - hallo was habe ich für vorlesungen
+    - was hab ich für vorlesungen
+    - welche module hab ich am [montag](date)
+    - welche Vorlesungen hab ich [morgen](date)
+    - was habe ich am [Mittwoch](date)
+    - was hab ich am [Dienstag](date) für Vorlesungen?
+    - was hab ich am [Montag](date) für vorlesungen
+    - was hab ich [morgen](date) für vorlesungen
+    - was hab ich [morgen](date)
+    - was hab ich [heute](date) für vorlesungen
+    - was hab ich am [Mittwoch](date) alles
+    - hab ich [morgen](date) vorlesungen?
+    - was hab ich [heute](date) um [13:00](time) Uhr
+    - hab ich vorlesungen?
+    - hab ich [heute](date) um [09:45](time) vorlesungen
+    - hab ich am [Dienstag](date) vorlesungen
+    - hab ich am [Mittwoch](date) irgendwelche vorlesungen
+    - wie sind die vorlesungen am [montag](date)
+    - was hab ich am [montag](date) für vorlesungen
+    - was habe ich am [Mittwoch](date) alles
+    - hab ich irgendwas am [donnerstag](date) um [14:00](time) Uhr
+    - hab ich noch andere vorlesungen
+    - was hab ich sonst noch
+    - was haben sie sonst noch
+    - hab ich am [Mittwoch](date) was
+    - hab ich am [13.12](date) für vorlesungen
+    - was hab ich am [16.12](date) um [15:45](time) Uhr
+    - sind am [15.12](date) vorlesungen
+    - was hab ich am [mittwoch](date) um [09:45](time) uhr
+    - hallo, welche Vorlesungen habe ich [heute](date)?
+
+- intent: ask_for_classes_with_information
+  examples: |
+    - was habe ich [heute](date) für vorlesungen? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semster
+    - welche vorlesung habe ich [heute](date)? ich studiere [ki](degree_course) im [fünften](semester) semster
+    - was ist meine [nächste](date) vorlesung? ich studiere [wi](degree_course) im [4](semester). semster
+    - wie lauten meine vorlesungen für [heute](date)? ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - kannst du mir sagen welche vorlesungen ich [heute](date) habe? [erstes](semester) semester [künstliche intelligenz](degree_course)
+    - welche vorlesungen habe ich am [22.10.2021](date)? ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semester
+    - was für vorlesungen habe ich am [22. oktober](date)? ich bin im [dritten](semester) semester und studiere [wirtschaftsinformatik](degree_course)
+    - sag mir meine [nächste](date) vorlesung. ich bin im [ersten](semester) semester von [cyber security](degree_course)
+    - vorlesungen am [mittwoch](date) für [zweites](semester). semester [cyber security](degree_course)
+    - vorlesungen am [11. Dezember](date) für [2](semester). semester [wi](degree_course)
+    - welche fächer habe ich [heute](date)? ich bin in meinem [vierten](semester) semester im studiengang [ki](degree_course)
+    - welche module habe ich [morgen](date)? ich bin im [dritten](semester) semester und studiere [wirtschaftsinformatik](degree_course)
+    - [heutige](date) vorlesungen für [wi](degree_course) [4](semester). semster
+    - vorlesung [morgen](date). ich studiere [maschinenbau](degree_course) im [2](semester). semester
+    - vorlesungen [heute](date) für [erstes](semester) semester [künstliche intelligenz](degree_course)
+    - ich studiere [künstliche Intelligenz](degree_course) im [dritten](semester) semester und möchte meine Vorlesungen wissen
+    - was hab ich für vorlesungen? ich bin im [dritten](semester) semester
+    - was hab ich am [Dienstag](date) für Vorlesungen. ich bin im [dritten](semester) semester
+    - was hab ich am [Dienstag](date) für Vorlesungen? ich studiere [Maschinenbau](degree_course) im [5](semester) semester
+    - hab ich am [Dienstag](date) eine vorlesung? ich bin [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} student
+    - hab ich [heute](date) vorlesungen? [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [ersten](semester)
+    - hab ich [heute](date) vorlesungen? [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} in [ersten](semester)
+    - ich studiere [Wirtschaftsinformatik](degree_course) im [1](semester) semester. was hab ich?
+    - was hab ich? ich bin student von [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} und  im [1](semester) semester
+    - ich studier [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} und bin im [ersten](semester) semester. kannst du mir sagen ob ich [heute](date) vorlesungen habe
+    - was hab ich [heute](date)? ich studier [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [ersten](semester)
+    - hab ich am [dienstag](date) vorlesungen? [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+    - wie sind die vorlesungen für [Donnerstag](date) [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+    - hey ich bin im [dritten](semester) semester von [künstlicher Intelligenz](degree_course). hab ich [morgen](date) irgendwelche vorlesungen
+    - hey ich bin im [dritten](semester) semester von [künstliche Intelligenz](degree_course). hab ich [morgen](date) irgendwelche vorlesungen
+    - ich studier [cy]{"entity": "degree_course", "value": "Cyber Security"} im [1](semester). semester. was hab ich am [montag](date)
+    - was hab ich am [Mittwoch](date)? [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}, [3](semester)
+    - was hab ich am [15.12.2021](date) als [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} student im [dritten](semester) semester für vorlesungen
+    - was hab ich am [15.12.21](date) als [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} student im [dritten](semester) semester für vorlesungen
+    - Hallo, was habe ich für Vorlesungen? Ich studiere [künstliche Intelligenz](degree_course) im [dritten](semester) Semester.
+
+- intent: bot_functions
+  examples: |
+    - was kannst du alles?
+    - welche funktionen hast du?
+    - funktionen
+    - was kann ich dich alles fragen?
+    - hallo was kannst du alles
+    - was kannst du alles
+    - Hilfe
+    - was kannst du
+    - was kannst du so
+    - Was kannst du alles?
+
+- intent: answer_semester
+  examples: |
+    - ich bin im [dritten](semester) semster
+    - ich bin im [5](semester). semester
+    - [erstes](semester) semester
+    - [2](semester)
+    - im [siebten](semester)
+    - ich studiere im [sechsten](semester) semester
+    - ich bin in meinem [vierten](semester) semester
+    - [7](semester)
+    - ich bin im [3](semester). semester
+    - [3](semester).
+    - [3](semester)
+    - [1](semester).
+    - ich bin im [dritten](semester) semester
+    - [drittes](semester) semester
+    - [7](semester).
+    - ich bin im [vierten](semester) semester
+    - [5](semester)
+    - [erstes](semester)
+    - ich bin im [achten](semester) semester
+    - ich bin im [8](semester) semester
+    - [8](semester)
+
+- intent: answer_degree_course
+  examples: |
+    - [KI](degree_course)
+    - [künstliche intelligenz](degree_course)
+    - ich studiere [cyber security](degree_course)
+    - ich studiere [WI](degree_course)
+    - [ki](degree_course)
+    - [Künstliche Intelligenz](degree_course)
+    - [cyber security](degree_course)
+    - ich bin [künstliche intelligent](degree_course) student
+    - [künstliche intelligent](degree_course)
+    - [Ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - ich bin [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} student
+    - ich bin [kI](degree_course) student
+    - [cy]{"entity": "degree_course", "value": "Cyber Security"}
+    - [betriebswirtschaft](degree_course)
+    - umweltingenieurwesen
+    - [wirtschaftsinformatik](degree_course)
+    - [wi](degree_course)
+    - Ich studiere [Architektur](degree_course)
+
+- intent: answer_degree_course_and_semester
+  examples: |
+    - [Künstliche Intelligenz](degree_course) im [3](semester) semester
+    - [Künstliche Intelligen](degree_course) im [dritten](semester) semester
+    - ich studiere [künstliche intelligent](degree_course) im [dritten](semester) semester
+    - ich studiere [künstliche intelligenz](degree_course) im [dritten](semester) semester
+    - ich studiere [maschinenbau](degree_course) im [2](semester). semester
+    - ich bin im [dritten](semester) semester und studiere [wirtschaftsinformatik](degree_course)
+    - ich studiere im [dritten](semester) Semester [künstliche intelligenz](degree_course)
+    - ich studiere [cyber security](degree_course) im [dritten](semester) semester
+    - [Maschinenbau](degree_course) im [dritten](semester) semester
+    - [cyber security](degree_course) im [3](semester) semester
+    - [cyber security](degree_course) im [dritten](semester) semester
+    - [Künstliche Intelligenz](degree_course) im [dritten](semester) semester
+    - ich bin im [1](semester). semester von [ki](degree_course)
+    - [cyber security](degree_course), [erstes](semester)
+    - ich studiere [Künstliche Intelligenz](degree_course) im [3](semester). semester
+    - ich studiere [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+    - ich studiere [cy](degree_course) und bin im [1](semester). semester
+    - [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [3](semester). semester
+    - [drittes](semester) semester [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"}
+    - [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester) semester
+    - [ki]{"entity": "degree_course", "value": "Künstliche Intelligenz"} im [dritten](semester)
+    - [cy]{"entity": "degree_course", "value": "Cyber Security"} im [ersten](semester) semester
+
+- intent: confirm
+  examples: |
+    - ja
+    - ja bitte
+    - ja gerne
+    - klar
+    - sehr gerne
+
+- intent: deny
+  examples: |
+    - nein
+    - nein danke
+    - nee
+    - muss nicht sein
+    - nein das wars
+    - nein das war alles
+    - nein tschüss
+
+- intent: thanks
+  examples: |
+    - danke
+    - vielen dank
+    - dankeschön
+    - oke danke
+    - perfekt danke
+    - super danke
+
+- intent: out_of_scope
+  examples: |
+    - was gibt es in der mensa zu essen?
+    - welchen professor haben wir?
+    - wie lange dauert die vorlesung?
+    - findet die vorlesung online statt?
+    - wie viele vorlesungen haben wir heute?
+    - welchen professor hab ich [heute](date)
+    - was gibt es in der Mensa zu essen
+
+- synonym: Künstliche Intelligenz
+  examples: |
+    - ki
+    - Ki
+    - KI
+    - kI
+    - künstlicher Intelligenz
+    - künstlicher intelligenz
+
+- synonym: Cyber Security
+  examples: |
+    - cy
+    - CY
+    - cY
+    - Cy
