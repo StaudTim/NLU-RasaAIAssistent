@@ -2,12 +2,37 @@ version: "2.0"
 
 rules:
 
-- rule: Say goodbye anytime the user says goodbye
+- rule: answer_greeting
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: answer_goodbye
   steps:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: Say 'I am a bot' anytime the user challenges
+- rule: answer_bot_challenge
   steps:
   - intent: bot_challenge
-  - action: utter_iamabot
+  - action: utter_bot_challenge
+  
+- rule: answer_bot_function
+  steps:
+  - intent: bot_functions
+  - action: utter_bot_function
+
+- rule: answer_thanks
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+
+- rule: answer_out_of_scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: ask_for_rephrase
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
