@@ -1,30 +1,1044 @@
 version: "2.0"
-
 stories:
-
-- story: happy path
+- story: bot_functions
   steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_great
-  - action: utter_happy
-
-- story: sad path 1
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
-  - intent: affirm
-  - action: utter_happy
-
-- story: sad path 2
-  steps:
-  - intent: greet
-  - action: utter_greet
-  - intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+  - intent: bot_functions
+  - action: utter_bot_function
+  - intent: thanks
+  - action: utter_thanks
   - intent: deny
   - action: utter_goodbye
+
+- story: bot_challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+
+- story: get_class_without_information_1
+  steps:
+  - intent: ask_for_classes
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: angewandte volkswirtschaftslehre
+  - slot_was_set:
+    - degree_course: angewandte volkswirtschaftslehre
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '7'
+  - slot_was_set:
+    - semester: '7'
+  - action: action_get_class
+
+- story: get_class_with_information_1
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: künstliche intelligenz
+    - semester: dritten
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: action_get_class
+
+- story: get_class_time_without_information_1
+  steps:
+  - intent: ask_for_classes
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: cyber security
+  - slot_was_set:
+    - degree_course: cyber security
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: drei
+  - slot_was_set:
+    - semester: drei
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_class_time_with_information
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: digital health
+    - semester: dritten
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: digital health
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_class_location_without_information
+  steps:
+  - intent: ask_for_classes
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: angewandte wirtschaftspsychologie
+  - slot_was_set:
+    - degree_course: angewandte wirtschaftspsychologie
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: erstes
+  - slot_was_set:
+    - semester: erstes
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_class_location_with_information
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: gesundheitsinformatik
+    - semester: viertes
+  - slot_was_set:
+    - semester: viertes
+  - slot_was_set:
+    - degree_course: gesundheitsinformatik
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_class_location_time_without_information
+  steps:
+  - intent: ask_for_classes
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: betriebswirtschaft
+  - slot_was_set:
+    - degree_course: betriebswirtschaft
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '4'
+  - slot_was_set:
+    - semester: '4'
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_class_location_time_with_information
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: industrial engineering
+    - semester: siebten
+  - slot_was_set:
+    - semester: siebten
+  - slot_was_set:
+    - degree_course: industrial engineering
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_class_time_location_without_information_1
+  steps:
+  - intent: ask_for_classes
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: technologiemanagement
+  - slot_was_set:
+    - degree_course: technologiemanagement
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '1'
+  - slot_was_set:
+    - semester: '1'
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_class_time_location_with_information
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: maschinenbau
+    - semester: vier
+  - slot_was_set:
+    - semester: vier
+  - slot_was_set:
+    - degree_course: maschinenbau
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_location_without_information_1
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: angewandte volkswirtschaftslehre
+  - slot_was_set:
+    - degree_course: angewandte volkswirtschaftslehre
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '2'
+  - slot_was_set:
+    - semester: '2'
+  - action: action_get_location
+
+- story: get_location_with_information
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: healthy and sustainable buildings
+    - semester: drittes
+  - slot_was_set:
+    - semester: drittes
+  - slot_was_set:
+    - degree_course: healthy and sustainable buildings
+  - action: action_get_location
+
+- story: get_location_class_without_information
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: umweltingenieurwesen
+  - slot_was_set:
+    - degree_course: umweltingenieurwesen
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: erstes
+  - slot_was_set:
+    - semester: erstes
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_location_class_with_information
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: international management
+    - semester: viertes
+  - slot_was_set:
+    - semester: viertes
+  - slot_was_set:
+    - degree_course: international management
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_location_time_without_information
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: angewandte volkswirtschaftslehre
+  - slot_was_set:
+    - degree_course: angewandte volkswirtschaftslehre
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '5'
+  - slot_was_set:
+    - semester: '5'
+  - action: action_get_location
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_location_time_with_information
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: elektro- und informationstechnik
+    - semester: 2
+  - slot_was_set:
+    - semester: 2
+  - slot_was_set:
+    - degree_course: elektro- und informationstechnik
+  - action: action_get_location
+  - intent: time_of_lecture
+  - action: action_get_time
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get_location_class_time_without_information
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: gesundheitsinformatik
+  - slot_was_set:
+    - degree_course: gesundheitsinformatik
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: fünf
+  - slot_was_set:
+    - semester: fünf
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_location_class_time_with_information_1
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: künstliche intelligenz
+    - semester: zwei
+  - slot_was_set:
+    - semester: zwei
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_location_time_class_without_information
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: angewandte wirtschaftspsychologie
+  - slot_was_set:
+    - degree_course: angewandte wirtschaftspsychologie
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: sechste
+  - slot_was_set:
+    - semester: sechste
+  - action: action_get_location
+  - intent: time_of_lecture
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_location_time_class_with_information
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: bauingenieurwesen
+    - semester: 6
+  - slot_was_set:
+    - semester: 6
+  - slot_was_set:
+    - degree_course: bauingenieurwesen
+  - action: action_get_location
+  - intent: time_of_lecture
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_time_without_information_1
+  steps:
+  - intent: time_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: automotive electronics
+  - slot_was_set:
+    - degree_course: automotive electronics
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: zweites
+  - slot_was_set:
+    - semester: zweites
+  - action: action_get_time
+
+- story: get_time_with_information
+  steps:
+  - intent: time_of_lecture_with_information
+    entities:
+    - degree_course: high performance computing / quantum computing
+    - semester: 1
+  - slot_was_set:
+    - semester: 1
+  - slot_was_set:
+    - degree_course: high performance computing / quantum computing
+  - action: action_get_time
+
+- story: get_time_location_without_information
+  steps:
+  - intent: time_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: artificial intelligence
+  - slot_was_set:
+    - degree_course: artificial intelligence
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: sieben
+  - slot_was_set:
+    - semester: sieben
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_time_location_with_information
+  steps:
+  - intent: time_of_lecture_with_information
+    entities:
+    - degree_course: künstliche intelligenz
+    - semester: 7
+  - slot_was_set:
+    - semester: 7
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_time_class_without_information
+  steps:
+  - intent: time_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: international management
+  - slot_was_set:
+    - degree_course: international management
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: fünftes
+  - slot_was_set:
+    - semester: fünftes
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_time_class_with_information
+  steps:
+  - intent: time_of_lecture_with_information
+    entities:
+    - degree_course: wirtschaftsingenieurwesen
+    - semester: 6
+  - slot_was_set:
+    - semester: 6
+  - slot_was_set:
+    - degree_course: wirtschaftsingenieurwesen
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_time_location_class_without_information
+  steps:
+  - intent: time_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: tourismusmanagement
+  - slot_was_set:
+    - degree_course: tourismusmanagement
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: zwei
+  - slot_was_set:
+    - semester: zwei
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_time_location_class_with_information
+  steps:
+  - intent: time_of_lecture_with_information
+    entities:
+    - degree_course: künstliche intelligenz
+    - semester: drittes
+  - slot_was_set:
+    - semester: drittes
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_time_class_location_without_information
+  steps:
+  - intent: time_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: angewandte volkswirtschaftslehre
+  - slot_was_set:
+    - degree_course: angewandte volkswirtschaftslehre
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: viertes
+  - slot_was_set:
+    - semester: viertes
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get_time_class_location_with_information
+  steps:
+  - intent: time_of_lecture_with_information
+    entities:
+    - degree_course: global public health
+    - semester: fünf
+  - slot_was_set:
+    - semester: fünf
+  - slot_was_set:
+    - degree_course: global public health
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+
+- story: get_class_time_without_information_2
+  steps:
+  - intent: ask_for_classes
+    entities:
+    - date: heute
+  - slot_was_set:
+    - date: heute
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '1'
+  - slot_was_set:
+    - semester: '1'
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+
+- story: get_time_with_half_information
+  steps:
+  - intent: time_of_lecture_with_information
+    entities:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_time
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get_location_without_information_2
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: cyber security
+  - slot_was_set:
+    - degree_course: cyber security
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_location
+
+- story: get_class_time_location_without_information_2
+  steps:
+  - intent: ask_for_classes
+    entities:
+    - date: Montag
+  - slot_was_set:
+    - date: Montag
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: künstliche intelligenz
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_class
+  - intent: time_of_lecture
+    entities:
+    - lecture: Stochastik
+  - slot_was_set:
+    - lecture: Stochastik
+  - action: action_get_time
+  - intent: location_of_lecture
+    entities:
+    - lecture: Stochastik
+  - slot_was_set:
+    - lecture: Stochastik
+  - action: action_get_location
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: try_again_after_wrong_informations
+  steps:
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: künstliche intelligent
+  - slot_was_set:
+    - degree_course: künstliche intelligent
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_time
+  - intent: answer_degree_course_and_semester
+    entities:
+    - degree_course: künstliche intelligenz
+  - slot_was_set:
+    - degree_course: künstliche intelligent
+  - slot_was_set:
+    - semester: '3'
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: action_get_class
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get_time_location_of_a_lecture_1
+  steps:
+  - slot_was_set:
+    - lecture: stochastik
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: cyber security
+  - slot_was_set:
+    - degree_course: cyber security
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - degree_course: cyber security
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get_location_without_information_3
+  steps:
+  - intent: location_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course_and_semester
+    entities:
+    - degree_course: Maschinenbau
+    - semester: dritten
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: Maschinenbau
+  - action: action_get_location
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: get_time_without_information_2
+  steps:
+  - intent: time_of_lecture
+  - action: utter_degree_course
+  - intent: answer_degree_course_and_semester
+    entities:
+    - degree_course: automotive electronics
+    - semester: zweites
+  - slot_was_set:
+    - degree_course: automotive electronics
+  - slot_was_set:
+    - semester: zweites
+  - action: action_get_time
+
+- story: get_class_without_information_2
+  steps:
+  - intent: ask_for_classes
+  - action: utter_degree_course
+  - intent: answer_degree_course_and_semester
+    entities:
+    - degree_course: angewandte volkswirtschaftslehre
+    - semester: zweites
+  - slot_was_set:
+    - degree_course: angewandte volkswirtschaftslehre
+  - slot_was_set:
+    - semester: zweites
+  - action: action_get_class
+
+- story: get_class_with_information_2
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: künstliche intelligenz
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_class
+
+- story: bot_challenge_and_functions
+  steps:
+  - intent: bot_challenge
+  - action: utter_bot_challenge
+  - intent: bot_functions
+  - action: utter_bot_function
+
+- story: get_class_time_without_information_2
+  steps:
+  - intent: ask_for_classes
+    entities:
+    - date: montag
+  - slot_was_set:
+    - date: montag
+  - action: utter_degree_course
+  - intent: answer_degree_course_and_semester
+    entities:
+    - degree_course: cyber security
+    - semester: dritten
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: cyber security
+  - action: action_get_class
+
+- story: get_class_with_missing_informations_1
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - date: Dienstag
+    - semester: dritten
+  - slot_was_set:
+    - date: Dienstag
+  - slot_was_set:
+    - semester: dritten
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: künstliche intelligenz
+  - slot_was_set:
+    - date: Dienstag
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: künstliche intelligenz
+  - action: action_get_class
+
+- story: get_all_informations_1
+  steps:
+  - intent: ask_for_classes
+    entities:
+    - date: Mittwoch
+  - slot_was_set:
+    - date: Mittwoch
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_class
+  - intent: time_of_lecture
+    entities:
+    - lecture: datenbanken
+  - slot_was_set:
+    - lecture: datenbanken
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: get_class_on_different_days_1
+  steps:
+  - intent: ask_for_classes
+    entities:
+    - date: morgen
+  - slot_was_set:
+    - date: morgen
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_class
+  - intent: thanks
+  - action: utter_thanks
+  - intent: ask_for_classes
+    entities:
+    - date: Montag
+  - slot_was_set:
+    - date: morgen
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - semester: '3'
+  - slot_was_set:
+    - date: Montag
+  - action: action_get_class
+
+- story: fallback_functions_class_time_location_1
+  steps:
+  - intent: out_of_scope
+    entities:
+    - date: heute
+  - slot_was_set:
+    - date: heute
+  - action: utter_out_of_scope
+  - slot_was_set:
+    - date: heute
+  - intent: bot_functions
+  - action: utter_bot_function
+  - intent: ask_for_classes
+    entities:
+    - date: heute
+  - slot_was_set:
+    - date: heute
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_class
+  - intent: time_of_lecture
+  - action: action_get_time
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: thanks
+  - action: utter_thanks
+  - intent: deny
+  - action: utter_goodbye
+
+- story: out_of_scope_1
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+- story: get_location_with_missing_informations_1
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - lecture: stochastik
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - lecture: stochastik
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_location
+
+- story: get_location_with_missing_informations_2
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - lecture: stochastik
+    - semester: dritten
+  - slot_was_set:
+    - lecture: stochastik
+  - slot_was_set:
+    - semester: dritten
+  - action: utter_degree_course
+  - intent: answer_degree_course
+    entities:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - lecture: stochastik
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: action_get_location
+
+- story: get_class_location_time_with_information_2
+  steps:
+  - intent: ask_for_classes_with_information
+    entities:
+    - degree_course: Künstliche Intelligenz
+    - semester: ersten
+    - date: heute
+  - slot_was_set:
+    - date: heute
+  - slot_was_set:
+    - semester: ersten
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: action_get_class
+  - intent: location_of_lecture
+  - action: action_get_location
+  - intent: time_of_lecture
+  - slot_was_set:
+    - date: heute
+  - slot_was_set:
+    - semester: ersten
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: action_get_time
+
+- story: get_location_class_time_with_information_2
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: Künstliche Intelligenz
+    - date: montag
+  - slot_was_set:
+    - date: montag
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: utter_semester
+  - intent: answer_semester
+    entities:
+    - semester: '3'
+  - slot_was_set:
+    - date: montag
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - slot_was_set:
+    - semester: '3'
+  - action: action_get_location
+  - intent: ask_for_classes
+  - action: action_get_class
+  - intent: time_of_lecture
+    entities:
+    - lecture: stochastik
+  - slot_was_set:
+    - lecture: stochastik
+  - action: action_get_time
+
+- story: get_location_time_class_with_information_2
+  steps:
+  - intent: location_of_lecture_with_information
+    entities:
+    - degree_course: Cyber Security
+    - semester: vierten
+  - slot_was_set:
+    - semester: vierten
+  - slot_was_set:
+    - degree_course: Cyber Security
+  - action: action_get_location
+  - intent: time_of_lecture_with_information
+    entities:
+    - date: montag
+    - degree_course: Künstliche Intelligenz
+    - semester: drittes
+  - slot_was_set:
+    - semester: vierten
+  - slot_was_set:
+    - degree_course: Cyber Security
+  - slot_was_set:
+    - date: montag
+  - slot_was_set:
+    - semester: drittes
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: action_get_time
+  - intent: ask_for_classes
+  - action: action_get_class
+
+- story: get_location_at_a_given_time
+  steps:
+  - intent: location_of_lecture
+    entities:
+    - time: 15:45
+  - slot_was_set:
+    - time: 15:45
+  - action: utter_degree_course
+  - intent: answer_degree_course_and_semester
+    entities:
+    - degree_course: Künstliche Intelligenz
+    - semester: dritten
+  - slot_was_set:
+    - time: 15:45
+  - slot_was_set:
+    - semester: dritten
+  - slot_was_set:
+    - degree_course: Künstliche Intelligenz
+  - action: action_get_location
