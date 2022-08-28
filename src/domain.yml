@@ -1,34 +1,141 @@
-version: "2.0"
-
-intents:
-  - greet
-  - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-
-responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
-  utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
-  utter_did_that_help:
-  - text: "Did that help you?"
-
-  utter_happy:
-  - text: "Great, carry on!"
-
-  utter_goodbye:
-  - text: "Bye"
-
-  utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
+version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
+
+intents:
+- time_of_lecture:
+    use_entities: true
+- answer_degree_course:
+    use_entities: true
+- answer_semester:
+    use_entities: true
+- time_of_lecture_with_information:
+    use_entities: true
+- location_of_lecture:
+    use_entities: true
+- ask_for_classes:
+    use_entities: true
+- greet:
+    use_entities: []
+- goodbye:
+    use_entities: []
+- bot_challenge:
+    use_entities: []
+- location_of_lecture_with_information:
+    use_entities: true
+- ask_for_classes_with_information:
+    use_entities: true
+- bot_functions:
+    use_entities: []
+- confirm:
+    use_entities: []
+- deny:
+    use_entities: []
+- thanks:
+    use_entities: []
+- out_of_scope:
+    use_entities: true
+- nlu_fallback:
+    use_entities: true
+- answer_degree_course_and_semester:
+    use_entities: true
+
+entities:
+- date
+- degree_course
+- lecture
+- semester
+- time
+
+slots:
+  lecture:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+
+  date:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+
+  time:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+
+  semester:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+  degree_course:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+
+responses:
+  utter_greet:
+  - text: Hey! Wie kann ich dir helfen?
+  - text: Hallo! Was kann ich für dich tun?
+  - text: Guten Tag! Womit kann ich behilflich sein?
+
+  utter_goodbye:
+  - text: Tschüss.
+  - text: Bye.
+
+  utter_bot_challenge:
+  - text: Ich bin ein Bot.
+
+  utter_bot_function:
+  - text: Ich kann dir Fragen zu deinem Vorlesungsplan beantworten z.B was du für Vorlesungen hast.
+  - text: Ich kann dir Fragen zu deinem Vorlesungsplan beantworten z.B in welchem Raum deine Vorlesung ist.
+  - text: Ich kann dir Fragen zu deinem Vorlesungsplan beantworten z.B wann deine Vorlesung beginnt.
+
+  utter_degree_course:
+  - text: Was studiert du?
+  - text: Dafür muss ich wissen was du studierst?
+  - text: Welchen Studiengang belegst du?
+  - text: In welchen Studiengang bist du eingeschrieben?
+  - text: Dazu brauche ich deinen Studiegang?
+
+  utter_semester:
+  - text: In welchem Semester bist du?
+  - text: Welches Semester?
+  - text: In welchem Semester befindest du dich?
+  - text: Was für ein Semester?
+
+  utter_thanks:
+  - text: Gerne, kann ich sonst noch was für dich tun?
+  - text: Kann ich dir sonst noch helfen?
+  - text: Sehr gerne, willst du sonst noch was wissen?
+
+  utter_out_of_scope:
+  - text: Es tut mir leid aber ich kann dir diese Frage nicht beantworten.
+
+  utter_please_rephrase:
+  - text: Es tut mir leid, ich habe dich nicht verstanden. Kannst du das anders formulieren?
+
+actions:
+- action_get_class
+- action_get_location
+- action_get_time
+- utter_degree_course
+- utter_greet
+- utter_goodbye
+- utter_semester
+- utter_thanks
+- utter_out_of_scope
+- utter_please_rephrase
+- utter_bot_challenge
+- utter_bot_function
+
+forms: {}
+e2e_actions: []
